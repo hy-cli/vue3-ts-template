@@ -1,11 +1,8 @@
-const path = require("path");
-
-function resolve(dir) {
-  return path.join(__dirname, dir);
-}
-
 module.exports = {
   publicPath: "/",
+  devServer: {
+    port: 3030,
+  },
   css: {
     requireModuleExtension: true,
     loaderOptions: {
@@ -21,9 +18,6 @@ module.exports = {
     const svgRule = config.module.rule("svg");
     svgRule.uses.clear();
     svgRule.use("vue-svg-loader").loader("vue-svg-loa`der");
-
-    // 设置路径@
-    config.resolve.alias.set("@", resolve("src"));
   },
   configureWebpack: (config) => {
     // 生产模式下去掉console
@@ -34,8 +28,5 @@ module.exports = {
         return arg;
       });
     }
-  },
-  devServer: {
-    port: 3030,
   },
 };
